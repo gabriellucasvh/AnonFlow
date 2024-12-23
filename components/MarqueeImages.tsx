@@ -3,28 +3,36 @@ import Marquee from "@/components/ui/marquee";
 
 const reviews = [
   {
-    body: "I've never seen anything like this before. It's amazing. I love it.",
-    img: "/Marquee/restaurantes.png",
+    title: "Academias",
+    img: "/Marquee/academia.png",
   },
   {
-    body: "I don't know what to say. I'm speechless. This is amazing.",
-    img: "/Marquee/restaurantes.png",
+    title: "Cafeterias",
+    img: "/Marquee/cafeteria.png",
   },
   {
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Marquee/restaurantes.png",
+    title: "Cinemas e Teatros",
+    img: "/Marquee/cinema.png",
   },
   {
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Marquee/restaurantes.png",
+    title: "Hotéis e Pousadas",
+    img: "/Marquee/hotel.png",
   },
   {
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Marquee/restaurantes.png",
+    title: "Lojas Virtuais",
+    img: "/Marquee/lojav.png",
   },
   {
-    body: "I'm at a loss for words. This is amazing. I love it.",
-    img: "/Marquee/restaurantes.png",
+    title: "Parques de Diversões",
+    img: "/Marquee/parque.png",
+  },
+  {
+    title: "Restaurantes",
+    img: "/Marquee/restaurante.png",
+  },
+  {
+    title: "Salões de Beleza",
+    img: "/Marquee/salao.png",
   },
 ];
 
@@ -32,40 +40,42 @@ const firstRow = reviews.slice(0, reviews.length / 2);
 
 const ReviewCard = ({
   img,
-  body,
+  title,
 }: {
   img: string;
-  body: string;
+  title: string;
 }) => {
   return (
     <figure
       className={cn(
-        "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-2",
-        // light styles
-        "border-gray-950/[.1] bg-gray-950/[.01] hover:bg-gray-950/[.05]",
-        // dark styles
-        "dark:border-gray-50/[.1] dark:bg-gray-50/[.10] dark:hover:bg-gray-50/[.15]",
+        "relative w-64 overflow-hidden rounded-xl p-2",
       )}
     >
-      <div className="flex flex-row items-center gap-2">
-        <img className="rounded-lg" alt="" src={img} />
-        
+      <div className="relative hover:scale-105 transition-transform duration-300 my-10">
+        <img className="rounded-lg" alt="Review" src={img} />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent pointer-events-none rounded-xl" />
+        <h3 className="absolute bottom-2 left-2 z-10 text-white text-lg">
+          {title}
+        </h3>
       </div>
-      <blockquote className="mt-2 text-sm">{body}</blockquote>
     </figure>
   );
 };
+
+
+export default ReviewCard;
+
 
 export function MarqueeImagens() {
   return (
     <div className="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden bg-background">
       <Marquee reverse className="[--duration:20s]">
         {firstRow.map((review) => (
-          <ReviewCard key={review.body} {...review} />
+          <ReviewCard key={review.title} {...review} />
         ))}
       </Marquee>
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white dark:from-background"></div>
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-white via-transparent dark:from-background"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-white via-transparent dark:from-background"></div>
     </div>
   );
 }
